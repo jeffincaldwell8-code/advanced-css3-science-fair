@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Science Fair</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #e8f7f4, #f5f8ff);
+            color: #203340;
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        ::selection {
+            background-color: #b9f2df;
+            color: #123d36;
+        }
+
+        header {
+            padding: 42px 20px;
+            background: linear-gradient(120deg, #123b52, #087f8c);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.6rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            color: #d9f5f0;
+            font-size: 1.1rem;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #cbdedc;
+            box-shadow: 0 3px 10px rgba(26, 65, 72, 0.08);
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 0 8px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            color: #126b70;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        nav a:hover,
+        nav a:focus-visible {
+            background-color: #e0f4ef;
+            color: #103f4d;
+        }
+
+        .container {
+            width: 84%;
+            max-width: 1050px;
+            margin: 32px auto;
+        }
+
+        #projects,
+        #categories,
+        .box {
+            margin: 24px 0;
+            padding: 24px;
+            background-color: #ffffff;
+            border: 1px solid #d5e7e3;
+            border-radius: 14px;
+            box-shadow: 0 6px 18px rgba(28, 75, 77, 0.09);
+        }
+
+        /* Border image: decorative gradient border for the projects section */
+        #projects {
+            border: 6px solid transparent;
+            border-image: linear-gradient(120deg, #087f8c, #b9f2df) 1;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #145b68;
+            text-align: center;
+        }
+
+        h3 {
+            color: #176e70;
+        }
+
+        /* Multiple backgrounds and background sizing */
+        .exhibition {
+            padding: 22px;
+            border-radius: 14px;
+            background-image:
+                linear-gradient(rgba(232, 247, 244, 0.88), rgba(245, 248, 255, 0.88)),
+                url("https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1200");
+            background-size: cover, cover;
+            background-position: center, center;
+            background-repeat: no-repeat, no-repeat;
+        }
+
+        .image {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            text-align: center;
+        }
+
+        .image img {
+            display: block;
+            width: min(100%, 420px);
+            height: 260px;
+            object-fit: cover;
+            border: 4px solid #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 5px 14px rgba(20, 65, 74, 0.2);
+            opacity: 0.94;
+            transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+        }
+
+        .image img.contain {
+            object-fit: contain;
+            background-color: #e8f7f4;
+        }
+
+        .image a:nth-child(odd) img {
+            opacity: 0.86;
+        }
+
+        .image a:hover img,
+        .image a:focus-visible img {
+            transform: translateY(-3px);
+            box-shadow: 0 9px 20px rgba(20, 65, 74, 0.28);
+            opacity: 1;
+        }
+
+        .image p {
+            flex-basis: 100%;
+            margin: 0;
+            color: #526772;
+        }
+
+        table {
+            width: 100%;
+            margin: 15px auto;
+            overflow: hidden;
+            border: 1px solid #c9dedb;
+            border-collapse: collapse;
+            border-radius: 8px;
+        }
+
+        th,
+        td {
+            padding: 11px;
+            border: 1px solid #d6e5e2;
+            text-align: center;
+        }
+
+        th {
+            background-color: #176e70;
+            color: #ffffff;
+        }
+
+        tbody tr:nth-child(even),
+        table tr:nth-child(even) {
+            background-color: #edf7f5;
+        }
+
+        table tr:hover {
+            background-color: #dff2ed;
+        }
+
+        /* Adjacent sibling selector: styles the paragraph immediately after the projects heading */
+        #projects h2 + table {
+            margin-top: 20px;
+        }
+
+        /* Hovering over a project link highlights the paragraph immediately after the table */
+        #projects table + center {
+            color: #145b68;
+            font-weight: 600;
+        }
+
+        a {
+            color: #087f8c;
+        }
+
+        #projects a,
+        #contact a {
+            font-weight: 600;
+        }
+
+        #projects a:hover,
+        #contact a:hover {
+            color: #bd5b20;
+        }
+
+        dt {
+            margin-top: 12px;
+            color: #145b68;
+            font-size: 1.05rem;
+        }
+
+        dd {
+            margin-left: 20px;
+        }
+
+        li {
+            padding: 2px 0;
+        }
+
+        .box p {
+            text-align: center;
+        }
+
+        /* Tablet */
+        @media screen and (max-width: 992px) {
+            .container {
+                width: 90%;
+            }
+
+            .image img {
+                width: min(100%, 360px);
+            }
+        }
+
+        /* Mobile */
+        @media screen and (max-width: 768px) {
+            header {
+                padding: 30px 16px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav {
+                gap: 2px;
+                padding: 8px;
+            }
+
+            nav a {
+                margin: 2px;
+                padding: 7px 10px;
+            }
+
+            .container {
+                width: 94%;
+                margin: 20px auto;
+            }
+
+            #projects,
+            #categories,
+            .box {
+                padding: 18px;
+            }
+
+            .image img {
+                width: 100%;
+                height: auto;
+                max-height: 280px;
+            }
+        }
+
+        /* Small Mobile */
+        @media screen and (max-width: 480px) {
+            header h1 {
+                font-size: 1.7rem;
+            }
+
+            header p {
+                font-size: 0.95rem;
+            }
+
+            h2 {
+                font-size: 1.35rem;
+            }
+
+            th,
+            td {
+                padding: 7px 4px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header Section -->
+<header id="top">
+    <h1>Science Fair</h1>
+    <p>Explore • Experiment • Discover • Innovate</p>
+</header>
+<!-- Navigation Section -->
+<nav>
+    <a href="#projects">Projects</a>
+    <a href="#categories">Categories</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#contact">Contact</a>
+</nav>
+<div class="container">
+<!-- Exhibition Section -->
+<div class="exhibition">
+    <h2>Science Fair Exhibition</h2>
+    <p align="center">
+        Discover creative experiments, scientific models and innovative ideas.
+    </p>
+    <div class="image">
+        <a href="https://www.pexels.com/search/science/" target="_blank">
+            <img src="https://images.pexels.com/photos/2280549/pexels-photo-2280549.jpeg"
+                 width="300" height="200" alt="Science Experiment">
+        </a>
+        <a href="https://www.pexels.com/search/laboratory/" target="_blank">
+
+            <img src="https://images.pexels.com/photos/256262/pexels-photo-256262.jpeg"
+                 width="300" height="200" alt="Laboratory" class="contain">
+        </a>
+        <p>Click the images to explore more science pictures.</p>
+    </div>
+</div>
+<!-- Project Section -->
+<div id="projects">
+    <h2>Popular Projects</h2>
+    <table border="1">
+        <tr>
+            <th>Project</th>
+            <th>Category</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://www.youtube.com/results?search_query=solar+powered+car+science+project+tutorial"
+                   target="_blank">Solar Powered Car</a>
+            </td>
+            <td>Energy</td>
+            <td>Ready</td>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://www.youtube.com/results?search_query=obstacle+avoiding+robot+project+tutorial"
+                   target="_blank">Obstacle Avoiding Robot</a>
+            </td>
+            <td>Robotics</td>
+            <td>Ready</td>
+        </tr>
+        <tr>
+            <td>
+                <a href="https://www.youtube.com/results?search_query=water+purifier+science+project+tutorial"
+                   target="_blank">Water Purifier</a>
+            </td>
+            <td>Environment</td>
+            <td>Ready</td>
+        </tr>
+    </table>
+    <center>
+        <p><small>Click a project name to view its tutorial.</small></p>
+    </center>
+</div>
+<!-- Category Section -->
+<div id="categories">
+    <center>
+        <h2>Project Categories</h2>
+    </center>
+    <dl>
+        <dt><b>Robotics</b></dt>
+        <dd>Projects using robots and smart machines.</dd>
+        <dt><b>Green Energy</b></dt>
+        <dd>Projects using renewable energy.</dd>
+    </dl>
+    <h3>Project Steps</h3>
+    <ol>
+        <li>Choose a topic</li>
+        <li>Build the model</li>
+        <li>Test the project</li>
+    </ol>
+    <h3>Science Fields</h3>
+    <ul>
+        <li>Physical Science
+            <ul>
+                <li>Physics</li>
+                <li>Chemistry</li>
+            </ul>
+        </li>
+        <li>Technology
+            <ul>
+                <li>Robotics</li>
+                <li>Artificial Intelligence</li>
+            </ul>
+      </li>
+    </ul>
+</div>
+<!-- Schedule Section -->
+<div class="box" id="schedule">
+    <h2>Event Schedule</h2>
+    <table border="1">
+        <tr>
+            <th>Time</th>
+            <th>Event</th>
+            <th>Venue</th>
+        </tr>
+        <tr>
+            <td>9:00 AM</td>
+            <td>Opening Ceremony</td>
+            <td>Main Hall</td>
+        </tr>
+        <tr>
+            <td>10:00 AM</td>
+            <td>Project Exhibition</td>
+            <td>Science Block</td>
+        </tr>
+
+        <tr>
+            <td>2:00 PM</td>
+            <td>Prize Distribution</td>
+            <td>Auditorium</td>
+        </tr>
+
+    </table>
+</div>
+<!-- Contact Section -->
+
+<div class="box" id="contact">
+
+    <h2>Contact Us</h2>
+    <center>
+        <p>
+            <a href="mailto:sciencefair@example.com">Email Us</a> |
+            <a href="tel:+919876543210">Call Us</a>
+        </p>
+
+        <p>
+            <a href="https://www.sciencebuddies.org/" target="_blank">
+                Explore Science Project Ideas
+            </a>
+        </p>
+    </center>
+</div>
+</div>
+</body>
+</html>

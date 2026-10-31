@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScienceSphere | Science Fair 2026</title>
+  <style>
+    :root{--navy:#17263f;--blue:#3163d9;--paper:#f4f7fb;--white:#fff;--line:#e4ebf8;--ink:#1f2d3d;--muted:#5d6d82;--green:#1a8d60;--red:#d9505e;--yellow:#f7d96b;--shadow:0 18px 35px rgba(23,38,63,.12)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f9fbff,#f3f6fc);color:var(--ink);line-height:1.6}a{text-decoration:none;color:inherit}.nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:18px 7%;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);box-shadow:0 8px 18px rgba(22,31,48,.04)}.brand{font-size:1.4rem;font-weight:700;color:var(--navy)}.brand span{color:var(--blue)}.nav-links{display:flex;align-items:center;gap:24px;font-size:.95rem;font-weight:600;color:var(--muted)}.nav-cta,.primary-btn{display:inline-block;padding:12px 18px;border:none;border-radius:10px;background:linear-gradient(135deg,var(--blue),#2454c8);color:var(--white);font-weight:700;cursor:pointer;transition:.2s ease;box-shadow:0 10px 18px rgba(49,99,217,.22)}.nav-cta:hover,.primary-btn:hover{transform:translateY(-1px);box-shadow:0 14px 22px rgba(49,99,217,.26)}.hero{padding:72px 7% 90px;background:radial-gradient(circle at top right,#3c86ff 0%,transparent 22%),linear-gradient(135deg,#12213a 0%,#234a89 55%,#1d6a8d 100%);color:var(--white);position:relative}.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,0));pointer-events:none}.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;position:relative}.eyebrow{display:inline-block;font-size:.76rem;letter-spacing:1.2px;font-weight:700;text-transform:uppercase;color:#fbe58f}.hero h1{font-size:clamp(2.5rem,4vw,4.2rem);line-height:1.08;margin:14px 0 16px;letter-spacing:-1px}.hero p{color:#deebff;max-width:560px;font-size:1.05rem;margin-bottom:25px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.hero .primary-btn{background:linear-gradient(135deg,var(--yellow),#f2c84b);color:var(--navy);box-shadow:none}.outline-btn{display:inline-block;padding:11px 18px;border:1px solid rgba(255,255,255,.6);border-radius:10px;color:var(--white);font-weight:600;background:rgba(255,255,255,.04)}.hero-art{display:grid;place-items:center;min-height:280px}.orbit{position:relative;width:min(330px,75vw);aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;background:rgba(255,255,255,.04);box-shadow:inset 0 0 30px rgba(255,255,255,.04)}.orbit::before,.orbit::after{content:"";position:absolute;border-radius:50%;border:1px dashed rgba(255,255,255,.25);inset:15%}.orbit::after{inset:30%}.atom{font-size:6rem;position:relative;z-index:1;filter:drop-shadow(0 16px 18px rgba(0,0,0,.15))}.float{position:absolute;font-size:2rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:10px;box-shadow:0 12px 22px rgba(20,28,42,.18)}.f1{top:10%;left:12%}.f2{top:32%;right:4%}.f3{bottom:8%;left:24%}.section{padding:72px 7%}.section-inner{max-width:1100px;margin:0 auto}.section-heading{text-align:center;max-width:680px;margin:0 auto 35px}.section-heading .eyebrow{color:var(--blue)}.section-heading p{color:var(--muted);margin:0}h2{margin:10px 0 12px;font-size:clamp(2rem,3vw,2.7rem);line-height:1.2;color:var(--navy);letter-spacing:-.8px}.event-strip{background:linear-gradient(180deg,#edf5ff,#eef3ff);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;justify-content:space-around;gap:18px;flex-wrap:wrap;text-align:center;box-shadow:var(--shadow)}.event-strip strong{display:block;color:var(--navy);font-size:1.05rem}.event-strip span{color:var(--muted);font-size:.9rem}.feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.feature-card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease}.feature-card:hover{transform:translateY(-4px);box-shadow:0 22px 38px rgba(23,38,63,.16)}.feature-icon{width:56px;height:56px;display:grid;place-items:center;border-radius:16px;background:linear-gradient(135deg,#edf3ff,#e6f1ff);font-size:1.6rem}.feature-card h3{margin:16px 0 8px;color:var(--navy);font-size:1.3rem}.feature-card p{margin:0;color:var(--muted)}.register-section{background:linear-gradient(180deg,#f2f6ff,#edf5ff)}.register-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;align-items:start}.register-info p,.register-info li{color:var(--muted)}.register-info ul{padding-left:18px;margin:16px 0}.form-card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow)}.form-card h3{margin:0 0 6px;font-size:1.5rem;color:var(--navy)}.form-subtitle{margin:0 0 20px;color:var(--muted);font-size:.92rem}.field{margin-bottom:16px}label{display:block;margin-bottom:6px;font-size:.9rem;font-weight:700;color:#2d3a52}input,select{width:100%;padding:12px 13px;border:1px solid #cdd9ee;border-radius:10px;background:#fbfcff;color:var(--ink);font:inherit;transition:border-color .15s ease,box-shadow .15s ease}input:focus,select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(49,99,217,.12)}input.invalid,select.invalid{border-color:var(--red)}input.valid{border-color:var(--green)}.error{display:block;min-height:18px;margin-top:4px;font-size:.8rem;color:var(--red)}.success-hint{color:var(--green)}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.form-card .primary-btn{width:100%;margin-top:6px;padding:13px;font-size:1rem}.form-note{text-align:center;color:var(--muted);font-size:.8rem;margin-top:12px}.success-message{display:none;margin-top:16px;padding:12px 14px;border-radius:10px;background:#ebf9f1;color:#176b49;border:1px solid #bfe2ce;font-weight:700}.success-message.show{display:block}footer{background:var(--navy);color:#dfe9ff;text-align:center;padding:28px 7%;font-size:.9rem}footer strong{color:var(--white)}@media (max-width:800px){.hero-inner,.register-layout{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr}.nav-links a:not(.nav-cta){display:none}}@media (max-width:520px){.nav{padding:14px 5%}.section{padding:55px 5%}.hero{padding:50px 5% 60px}.form-card{padding:22px 18px}.form-row{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="#home">Science<span>Sphere</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#highlights">Highlights</a>
+      <a href="#register" class="nav-cta">Register</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="hero-inner">
+      <div>
+        <span class="eyebrow">Explore • Experiment • Discover</span>
+        <h1>Imagine it.<br>Build it.<br>Show the world.</h1>
+        <p>Welcome to ScienceSphere 2026, a student science fair celebrating curious minds, creative experiments, and ideas that can make a difference.</p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#register">Register your project</a>
+          <a class="outline-btn" href="#about">Explore the fair</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Science illustration">
+        <div class="orbit"><span class="atom">⚛</span><span class="float f1">🧪</span><span class="float f2">🔬</span><span class="float f3">💡</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="about">
+      <div class="section-inner">
+        <div class="section-heading">
+          <span class="eyebrow">About the event</span>
+          <h2>Where questions become discoveries</h2>
+          <p>ScienceSphere gives students a platform to present working models, experiments, and innovative solutions. Learn by doing, share what you discover, and get inspired by others.</p>
+        </div>
+        <div class="event-strip">
+          <div><strong>Science & Technology</strong><span>Explore new ideas</span></div>
+          <div><strong>Student Projects</strong><span>Present your creation</span></div>
+          <div><strong>Innovation</strong><span>Think beyond limits</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="highlights" style="padding-top:15px;">
+      <div class="section-inner">
+        <div class="section-heading">
+          <span class="eyebrow">Fair highlights</span>
+          <h2>Discover what you can showcase</h2>
+          <p>Bring your curiosity to life through practical demonstrations and creative thinking.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card"><div class="feature-icon">🤖</div><h3>Technology & Robotics</h3><p>Showcase automation, robotics, coding, and smart-device projects.</p></article>
+          <article class="feature-card"><div class="feature-icon">🌱</div><h3>Environment & Energy</h3><p>Present ideas for sustainability, renewable energy, and a greener future.</p></article>
+          <article class="feature-card"><div class="feature-icon">🧬</div><h3>Science Experiments</h3><p>Demonstrate discoveries in physics, chemistry, biology, and everyday science.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section register-section" id="register">
+      <div class="section-inner register-layout">
+        <div class="register-info">
+          <span class="eyebrow">Be part of the fair</span>
+          <h2>Register your science fair project</h2>
+          <p>Complete the form to register your interest. Make sure your details are correct before submitting.</p>
+          <ul>
+            <li>Enter your full name.</li>
+            <li>Use a valid email address.</li>
+            <li>Create a password with at least 8 characters.</li>
+            <li>Select the category that best matches your project.</li>
+          </ul>
+          <p><strong>Note:</strong> This is a front-end demonstration. Form data is validated in your browser and is not stored in a database.</p>
+        </div>
+
+        <form class="form-card" id="signupForm" novalidate>
+          <h3>Student Registration</h3>
+          <p class="form-subtitle">Fill in the details below to get started.</p>
+
+          <div class="field">
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" placeholder="e.g. Ravi Kumar" autocomplete="name">
+            <span class="error" id="nameError" aria-live="polite"></span>
+          </div>
+
+          <div class="field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="text" placeholder="you@example.com" autocomplete="email">
+            <span class="error" id="emailError" aria-live="polite"></span>
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="At least 8 characters" autocomplete="new-password">
+            <span class="error" id="passError" aria-live="polite"></span>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="category">Project category</label>
+              <select id="category" name="category">
+                <option value="">Choose a category</option>
+                <option>Physics</option>
+                <option>Chemistry</option>
+                <option>Biology</option>
+                <option>Technology & Robotics</option>
+                <option>Environment & Energy</option>
+              </select>
+              <span class="error" id="categoryError" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="project">Project title</label>
+              <input id="project" name="project" type="text" placeholder="Your project name">
+              <span class="error" id="projectError" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <button class="primary-btn" type="submit">Submit registration</button>
+          <p class="form-note">Your information is checked before the form is accepted.</p>
+          <div class="success-message" id="successMessage" role="status">✓ Registration successful! Your details passed the validation checks.</div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer><strong>ScienceSphere 2026</strong> · Curious minds. Creative discoveries.</footer>
+
+  <script>
+    const form=document.getElementById('signupForm');
+    const nameInput=document.getElementById('name');
+    const emailInput=document.getElementById('email');
+    const passwordInput=document.getElementById('password');
+    const categoryInput=document.getElementById('category');
+    const projectInput=document.getElementById('project');
+    const successMessage=document.getElementById('successMessage');
+
+    function isEmpty(v){return v.trim()==='';}
+    function isValidEmail(email){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);}
+    function isStrongPassword(p){return p.length>=8;}
+    function showError(id,msg){document.getElementById(id).textContent=msg;}
+    function clearErrors(){
+      ['nameError','emailError','passError','categoryError','projectError'].forEach(id=>showError(id,''));
+      [nameInput,emailInput,passwordInput,categoryInput,projectInput].forEach(input=>input.classList.remove('invalid','valid'));
+      successMessage.classList.remove('show');
+    }
+    function markInvalid(input,errorId,msg){showError(errorId,msg);input.classList.add('invalid');}
+    function markValid(input,errorId){showError(errorId,'Looks good');document.getElementById(errorId).classList.add('success-hint');input.classList.add('valid');}
+
+    function validateForm(){
+      let valid=true;
+      clearErrors();
+      const name=nameInput.value.trim();
+      const email=emailInput.value.trim();
+      const password=passwordInput.value;
+      const project=projectInput.value.trim();
+
+      if (isEmpty(name)) {markInvalid(nameInput,'nameError','Name is required');valid=false;}
+      else if (name.length<3) {markInvalid(nameInput,'nameError','Use at least 3 characters');valid=false;}
+      else {markValid(nameInput,'nameError');}
+
+      if (isEmpty(email)) {markInvalid(emailInput,'emailError','Email is required');valid=false;}
+      else if (!isValidEmail(email)) {markInvalid(emailInput,'emailError','Enter a valid email address');valid=false;}
+      else {markValid(emailInput,'emailError');}
+
+      if (isEmpty(password)) {markInvalid(passwordInput,'passError','Password is required');valid=false;}
+      else if (!isStrongPassword(password)) {markInvalid(passwordInput,'passError','Minimum 8 characters');valid=false;}
+      else {markValid(passwordInput,'passError');}
+
+      if (isEmpty(categoryInput.value)) {markInvalid(categoryInput,'categoryError','Please select a category');valid=false;}
+      else {markValid(categoryInput,'categoryError');}
+
+      if (isEmpty(project)) {markInvalid(projectInput,'projectError','Project title is required');valid=false;}
+      else {markValid(projectInput,'projectError');}
+
+      return valid;
+    }
+
+    form.addEventListener('submit', function(event){
+      event.preventDefault();
+      if (validateForm()) {
+        successMessage.classList.add('show');
+        form.querySelector('button[type="submit"]').textContent='Submitted ✓';
+      } else {
+        successMessage.classList.remove('show');
+      }
+    });
+
+    [nameInput,emailInput,passwordInput,categoryInput,projectInput].forEach(function(input){
+      input.addEventListener('input', function(){
+        input.classList.remove('invalid','valid');
+        const errorId={name:'nameError',email:'emailError',password:'passError',category:'categoryError',project:'projectError'}[input.id];
+        if (errorId) showError(errorId,'');
+        document.getElementById(errorId)?.classList.remove('success-hint');
+        successMessage.classList.remove('show');
+        form.querySelector('button[type="submit"]').textContent='Submit registration';
+      });
+    });
+  </script>
+</body>
+</html>

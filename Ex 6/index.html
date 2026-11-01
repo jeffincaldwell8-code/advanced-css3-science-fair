@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Science Fair Project</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="science-background" aria-hidden="true">
+    <img src="atom.svg" alt="">
+    <img src="microscope.svg" alt="">
+    <img src="plant.svg" alt="">
+    <img src="planet.svg" alt="">
+  </div>
+
+  <header>
+    <h1>My Science Fair Project</h1>
+    <p>One small step at a time!</p>
+  </header>
+
+  <main>
+    <h2>My checklist</h2>
+    <p><span id="taskCount">4</span> tasks left</p>
+
+    <form id="taskForm">
+      <label for="taskInput">Add a task:</label>
+      <input id="taskInput" type="text" placeholder="For example: choose a project" required>
+      <button type="submit">Add</button>
+    </form>
+
+    <div class="filters">
+      <button type="button" data-filter="all">All</button>
+      <button type="button" data-filter="open">To do</button>
+      <button type="button" data-filter="done">Done</button>
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <section class="explore" aria-labelledby="exploreTitle">
+      <h2 id="exploreTitle">Explore more</h2>
+      <a
+        class="explore-image"
+        href="https://www.sciencebuddies.org/science-fair-projects/science-projects"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          src="science-lab.svg"
+          alt="Illustration of colorful science experiment glassware"
+          loading="lazy"
+        >
+        <span>Explore science project ideas <span aria-hidden="true">↗</span></span>
+      </a>
+      <p class="video-title">Watch a video</p>
+      <div class="video-links">
+        <a
+          href="https://www.youtube.com/results?search_query=easy+science+experiments+for+kids"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Easy experiments for kids <span aria-hidden="true">↗</span></a>
+        <a
+          href="https://www.youtube.com/results?search_query=science+fair+project+ideas+for+students"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Science fair project ideas <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>Stay curious and have fun!</footer>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Fair Hub | Student Records</title>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#68758a;--accent:#16845b;--soft:#e8f5ef;--border:#e1e7ee;--red:#dc5454;--shadow:0 8px 24px rgba(24,39,60,.07)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}
+.app{min-height:100vh}.topbar{background:#102c26;color:#fff;padding:16px clamp(16px,4vw,48px);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:12px;background:#1c9b6b;display:grid;place-items:center;font-size:22px}.brand h1{font-size:18px;margin:0}.brand p{font-size:11px;color:#b7d7ca;margin:3px 0 0}.top-actions{display:flex;gap:10px;align-items:center}.top-actions span{font-size:12px;color:#c5ded4}
+button{font:inherit;cursor:pointer}.theme{border:1px solid #52766a;background:transparent;color:white;border-radius:9px;padding:8px 12px}
+main{max-width:1120px;margin:auto;padding:30px 18px 50px}.intro{display:flex;justify-content:space-between;align-items:flex-end;gap:15px;margin-bottom:22px}.eyebrow{color:var(--accent);font-weight:800;font-size:11px;letter-spacing:1.5px;text-transform:uppercase}h2{font-size:30px;margin:7px 0}.intro p{margin:0;color:var(--muted);line-height:1.5}.pill{background:var(--soft);color:var(--accent);padding:9px 13px;border-radius:99px;font-size:12px;font-weight:700;white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}.stat,.panel{background:var(--card);border:1px solid var(--border);border-radius:15px;box-shadow:var(--shadow)}.stat{padding:17px}.stat-label{color:var(--muted);font-size:12px}.stat-value{font-size:25px;font-weight:800;margin-top:7px}.stat small{color:var(--muted);font-size:11px}
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:16px;align-items:start}.sidebar{padding:12px;background:var(--card);border:1px solid var(--border);border-radius:15px}.navbtn{display:flex;width:100%;text-align:left;gap:10px;align-items:center;border:0;background:transparent;color:var(--muted);padding:12px;border-radius:9px;margin:2px 0;font-size:13px}.navbtn.active,.navbtn:hover{background:var(--soft);color:var(--accent);font-weight:700}.side-note{font-size:11px;line-height:1.5;color:var(--muted);padding:12px 10px 5px;border-top:1px solid var(--border);margin-top:10px}
+.panel{padding:20px;min-width:0}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.panel h3{font-size:18px;margin:0}.desc{color:var(--muted);font-size:12px;margin:5px 0 0}.status{font-size:11px;color:var(--accent);background:var(--soft);padding:6px 9px;border-radius:20px}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}.field{padding:10px 11px;border:1px solid var(--border);border-radius:9px;background:var(--card);color:var(--text);min-width:0;outline:none}.field:focus{border-color:var(--accent)}.toolbar .field{flex:1;min-width:150px}
+.btn{border:0;border-radius:9px;padding:10px 14px;background:var(--accent);color:#fff;font-weight:700;font-size:12px}.btn.secondary{background:#edf1f5;color:#344256}.btn.danger{background:#fff0f0;color:var(--red)}.btn:disabled{opacity:.5;cursor:not-allowed}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:570px}th{text-align:left;color:var(--muted);font-weight:700;background:#f7f9fb}th,td{padding:12px 10px;border-bottom:1px solid var(--border)}.tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px}.tag{font-size:10px;background:var(--soft);color:var(--accent);padding:4px 7px;border-radius:20px}.empty{text-align:center;color:var(--muted);padding:25px}
+.notice{background:#f0f8f4;border:1px solid #d3eadd;color:#28644b;border-radius:10px;padding:11px 13px;font-size:12px;line-height:1.5;margin-bottom:14px}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.formgrid label{font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:6px}.formgrid .field{width:100%}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.console{background:#10201d;color:#d7eee4;border-radius:11px;padding:15px;font:12px/1.7 Consolas,monospace;white-space:pre-wrap;min-height:100px;overflow-wrap:anywhere}.console .green{color:#8ee0b3}
+.hidden{display:none!important}.footer{text-align:center;color:var(--muted);font-size:11px;padding:22px}
+.dark{--bg:#101a22;--card:#1b2933;--text:#edf4f7;--muted:#a6b5c1;--border:#34434d;--soft:#213c34;--shadow:0 8px 24px rgba(0,0,0,.16)}
+.dark th{background:#24343e}.dark .btn.secondary{background:#34434d;color:#edf4f7}.dark .notice{background:#20382f;border-color:#345b49;color:#bde5ce}.dark .btn.danger{background:#482d32}
+@media(max-width:720px){.layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:repeat(2,1fr)}.side-note{grid-column:1/-1}.intro{align-items:flex-start;flex-direction:column}.stats{grid-template-columns:1fr}.top-actions span{display:none}}
+@media(max-width:430px){.formgrid{grid-template-columns:1fr}.panel{padding:15px}.topbar{padding:13px}.brand h1{font-size:15px}h2{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+<header class="topbar">
+ <div class="brand"><div class="logo">🍃</div><div><h1>Science Fair Hub</h1><p>LEARN · EXPERIMENT · DISCOVER</p></div></div>
+ <div class="top-actions"><span>Experiment 10 · Student Records</span><button class="theme" id="themeBtn">🌙 Dark Mode</button></div>
+</header>
+<main>
+ <section class="intro"><div><div class="eyebrow">Student learning workspace</div><h2>Student Records Lab</h2><p>Practice managing a sample list of student records.</p></div><div class="pill">● Lab environment ready</div></section>
+ <section class="stats">
+  <div class="stat"><div class="stat-label">DATASET</div><div class="stat-value">students</div><small>Active student list</small></div>
+  <div class="stat"><div class="stat-label">RECORD TYPE</div><div class="stat-value">Student</div><small>Student details</small></div>
+  <div class="stat"><div class="stat-label">TOTAL RECORDS</div><div class="stat-value" id="totalCount">4</div><small>Current records</small></div>
+ </section>
+ <div class="layout">
+  <aside class="sidebar">
+   <button class="navbtn active" data-page="records">📄 &nbsp; View Records</button>
+   <button class="navbtn" data-page="insert">➕ &nbsp; Add Student</button>
+   <button class="navbtn" data-page="query">🔎 &nbsp; Search Records</button>
+   <button class="navbtn" data-page="update">✏️ &nbsp; Update Record</button>
+   <button class="navbtn" data-page="index">⚡ &nbsp; ID Protection</button>
+   <button class="navbtn" data-page="delete">🗑️ &nbsp; Delete Records</button>
+   <div class="side-note">This interactive demo uses sample student data stored in your browser.</div>
+  </aside>
+  <section class="panel">
+   <div id="recordsPage">
+    <div class="panelhead"><div><h3>Student Records</h3><p class="desc">All student details in this sample list.</p></div><span class="status">● List ready</span></div>
+    <div class="toolbar"><input class="field" id="quickSearch" placeholder="Search by name or major..."><button class="btn secondary" id="resetSearch">Show All</button></div>
+    <div class="tablewrap"><table><thead><tr><th>ID</th><th>NAME</th><th>AGE</th><th>MAJOR</th><th>GPA</th><th>SKILLS</th></tr></thead><tbody id="studentRows"></tbody></table></div>
+   </div>
+   <div id="insertPage" class="hidden">
+    <div class="panelhead"><div><h3>Add Student Record</h3><p class="desc">Enter details to add a student to the list.</p></div><span class="status">ADD</span></div>
+    <div class="notice">Add a new student to the sample list.</div>
+    <form id="insertForm" class="formgrid">
+     <label>Student ID<input class="field" id="newId" type="number" min="1" placeholder="e.g. 105" required></label>
+     <label>Full Name<input class="field" id="newName" placeholder="Student name" required></label>
+     <label>Age<input class="field" id="newAge" type="number" min="1" max="100" placeholder="Age" required></label>
+     <label>Major<input class="field" id="newMajor" placeholder="e.g. Computer Science" required></label>
+     <label>GPA<input class="field" id="newGpa" type="number" min="0" max="4" step=".1" placeholder="e.g. 3.8" required></label>
+     <label>Skills (comma separated)<input class="field" id="newSkills" placeholder="Python, Research"></label>
+     <div class="actions" style="grid-column:1/-1"><button class="btn" type="submit">Add Student</button></div>
+    </form>
+   </div>
+   <div id="queryPage" class="hidden">
+    <div class="panelhead"><div><h3>Search Student Records</h3><p class="desc">Find students by major, skill, or minimum GPA.</p></div><span class="status">SEARCH</span></div>
+    <div class="formgrid">
+     <label>Search major or skill<input class="field" id="queryText" placeholder="e.g. Computer Science"></label>
+     <label>Minimum GPA<input class="field" id="queryGpa" type="number" min="0" max="4" step=".1" placeholder="e.g. 3.5"></label>
+    </div>
+    <div class="actions"><button class="btn" id="runQuery">Run Query</button><button class="btn secondary" id="clearQuery">Clear</button></div>
+    <p class="desc" id="queryCount" style="margin:15px 0"></p>
+    <div class="tablewrap"><table><thead><tr><th>ID</th><th>NAME</th><th>AGE</th><th>MAJOR</th><th>GPA</th><th>SKILLS</th></tr></thead><tbody id="queryRows"></tbody></table></div>
+   </div>
+   <div id="updatePage" class="hidden">
+    <div class="panelhead"><div><h3>Update Student Record</h3><p class="desc">Change the GPA for a student in the list.</p></div><span class="status">UPDATE</span></div>
+    <div class="notice">Enter a student ID and the new GPA. The matching record will be updated.</div>
+    <div class="formgrid">
+     <label>Student ID<input class="field" id="updateId" type="number" placeholder="e.g. 101"></label>
+     <label>New GPA<input class="field" id="updateGpa" type="number" min="0" max="4" step=".1" placeholder="e.g. 3.9"></label>
+    </div><div class="actions"><button class="btn" id="updateBtn">Update Record</button></div>
+   </div>
+   <div id="indexPage" class="hidden">
+    <div class="panelhead"><div><h3>ID Protection</h3><p class="desc">Keep student IDs unique in the sample list.</p></div><span class="status">PROTECTION</span></div>
+    <div class="notice">Enable ID protection to prevent duplicate student IDs.</div>
+    <p style="font-size:13px">Student IDs are checked to prevent duplicates when adding records.</p>
+    <div class="actions"><button class="btn" id="createIndex">Enable ID Protection</button><button class="btn secondary" id="listIndexes">View Protection Status</button></div>
+    <p class="desc" id="indexStatus" style="margin-top:15px">ID protection is ready.</p>
+   </div>
+   <div id="deletePage" class="hidden">
+    <div class="panelhead"><div><h3>Delete Student Records</h3><p class="desc">Remove one student or students below a GPA threshold.</p></div><span class="status">DELETE</span></div>
+    <div class="notice">Delete a single student by ID, or remove all records with a GPA below 3.0.</div>
+    <div class="formgrid">
+     <label>Student ID<input class="field" id="deleteId" type="number" placeholder="e.g. 103"></label>
+    </div>
+    <div class="actions"><button class="btn danger" id="deleteOne">Delete by ID</button><button class="btn danger" id="deleteLow">Delete GPA below 3.0</button></div>
+   </div>
+   <div style="margin-top:18px"><div class="panelhead"><div><h3 style="font-size:14px">Activity Log</h3><p class="desc">A summary of your actions.</p></div></div><div class="console" id="console"><span class="green">Student records demo is ready.</span>\nRecords: 4\nReady to manage students...</div></div>
+  </section>
+ </div>
+</main>
+<div class="footer">Science Fair Hub · Experiment 10 · Student Records</div>
+</div>
+<script>
+const initialStudents=[
+ {id:101,name:"Alice Smith",age:20,major:"Computer Science",gpa:3.8,skills:["Python","Research"]},
+ {id:102,name:"Bob Jones",age:22,major:"Data Science",gpa:3.4,skills:["R","Python","SQL"]},
+ {id:103,name:"Charlie Brown",age:21,major:"Computer Science",gpa:2.8,skills:["Java","C++"]},
+ {id:104,name:"Diana Prince",age:23,major:"Cybersecurity",gpa:3.9,skills:["Linux","Python","Networking"]}
+];
+let students=initialStudents.map(s=>({...s,skills:[...s.skills]}));
+let uniqueIndex=false;
+const $=id=>document.getElementById(id);
+function log(message){$("console").textContent="> "+message+"\n"+$("console").textContent;}
+function renderRows(target,list){
+ const body=$(target);
+ if(!list.length){body.innerHTML='<tr><td colspan="6" class="empty">No matching student records found.</td></tr>';return;}
+ body.innerHTML=list.map(s=>`<tr><td>${s.id}</td><td><b>${escapeHTML(s.name)}</b></td><td>${s.age}</td><td>${escapeHTML(s.major)}</td><td>${Number(s.gpa).toFixed(1)}</td><td>${s.skills.map(escapeHTML).join(", ")}</td></tr>`).join("");
+}
+function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function refresh(){renderRows("studentRows",students);$("totalCount").textContent=students.length;}
+function showPage(page){
+ document.querySelectorAll("[id$='Page']").forEach(el=>el.classList.add("hidden"));
+ $(page+"Page").classList.remove("hidden");
+ document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+}
+document.querySelectorAll(".navbtn").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+$("themeBtn").addEventListener("click",()=>{const dark=$("app").classList.toggle("dark");$("themeBtn").textContent=dark?"☀️ Light Mode":"🌙 Dark Mode";});
+$("quickSearch").addEventListener("input",e=>{const q=e.target.value.toLowerCase();renderRows("studentRows",students.filter(s=>s.name.toLowerCase().includes(q)||s.major.toLowerCase().includes(q)||s.skills.some(x=>x.toLowerCase().includes(q))));});
+$("resetSearch").addEventListener("click",()=>{$("quickSearch").value="";refresh();});
+$("insertForm").addEventListener("submit",e=>{
+ e.preventDefault();const id=Number($("newId").value);
+ if(students.some(s=>s.id===id)){log("Add failed: student ID must be unique.");alert("This student ID already exists.");return;}
+ const student={id,name:$("newName").value.trim(),age:Number($("newAge").value),major:$("newMajor").value.trim(),gpa:Number($("newGpa").value),skills:$("newSkills").value.split(",").map(x=>x.trim()).filter(Boolean)};
+ students.push(student);refresh();e.target.reset();log(`Added student record for ${student.name} (ID ${id}).`);showPage("records");
+});
+$("runQuery").addEventListener("click",()=>{
+ const q=$("queryText").value.trim().toLowerCase(),g=$("queryGpa").value;
+ const result=students.filter(s=>(!q||s.major.toLowerCase().includes(q)||s.skills.some(x=>x.toLowerCase().includes(q)))&&(g===""||s.gpa>=Number(g)));
+ renderRows("queryRows",result);$("queryCount").textContent=`${result.length} student record(s) found.`;
+ log(`Search complete: ${result.length} student record(s) found.`);
+});
+$("clearQuery").addEventListener("click",()=>{$("queryText").value="";$("queryGpa").value="";renderRows("queryRows",students);$("queryCount").textContent="Showing all student records.";});
+$("updateBtn").addEventListener("click",()=>{
+ const id=Number($("updateId").value),gpa=Number($("updateGpa").value),s=students.find(x=>x.id===id);
+ if(!id||$("updateGpa").value===""||gpa<0||gpa>4){alert("Enter a valid student ID and GPA between 0 and 4.");return;}
+ if(!s){log(`No student record found with ID ${id}.`);alert("Student ID not found.");return;}
+ s.gpa=gpa;refresh();log(`Updated the GPA for student ID ${id}.`);alert("Student record updated.");
+});
+$("createIndex").addEventListener("click",()=>{uniqueIndex=true;$("indexStatus").textContent="✓ ID protection is enabled.";log("Enabled student ID protection.");});
+$("listIndexes").addEventListener("click",()=>{const msg=uniqueIndex?"Student ID protection is enabled.":"Student IDs are checked for duplicates."; $("indexStatus").textContent=msg;log(msg);});
+$("deleteOne").addEventListener("click",()=>{
+ const id=Number($("deleteId").value),before=students.length;students=students.filter(s=>s.id!==id);
+ if(before===students.length){alert("No student found with that ID.");log(`No student record matched ID ${id}.`);return;}
+ refresh();log(`Deleted student record with ID ${id}.`);$("deleteId").value="";
+});
+$("deleteLow").addEventListener("click",()=>{
+ const count=students.filter(s=>s.gpa<3.0).length;
+ if(!count){alert("No records have GPA below 3.0.");return;}
+ if(!confirm(`Delete ${count} student record(s) with GPA below 3.0?`))return;
+ students=students.filter(s=>s.gpa>=3.0);refresh();log(`Deleted ${count} student record(s) with GPA below 3.0.`);
+});
+refresh();renderRows("queryRows",students);
+</script>
+</body>
+</html>

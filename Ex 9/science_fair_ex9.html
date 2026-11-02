@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Science Fair Project Dashboard</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f7ff; --card: #ffffff; --text: #172554; --muted: #64748b;
+      --accent: #4f46e5; --accent-soft: #eef2ff; --border: #e2e8f0;
+      --shadow: 0 10px 28px rgba(30, 41, 59, .07);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, "Segoe UI", Arial, sans-serif; }
+    .app { min-height: 100vh; background: var(--bg); color: var(--text); transition: .25s; }
+    .app.dark {
+      --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --muted: #a5b4c8;
+      --accent: #818cf8; --accent-soft: #293451; --border: #334155;
+      --shadow: 0 10px 28px rgba(0,0,0,.18);
+    }
+    header { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:18px clamp(18px,5vw,64px); background:var(--card); border-bottom:1px solid var(--border); }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .logo { width:42px; height:42px; display:grid; place-items:center; border-radius:13px; color:white; background:linear-gradient(135deg,#4f46e5,#06b6d4); font-size:22px; }
+    h1 { font-size:20px; margin:0; } .subbrand { color:var(--muted); font-size:12px; margin-top:3px; }
+    .header-right { display:flex; align-items:center; gap:14px; color:var(--muted); font-size:14px; }
+    button { cursor:pointer; font:inherit; }
+    .theme-btn { border:1px solid var(--border); background:var(--card); color:var(--text); padding:9px 13px; border-radius:10px; }
+    main { max-width:1100px; margin:0 auto; padding:34px 20px 55px; }
+    .welcome { display:flex; justify-content:space-between; align-items:end; gap:18px; margin-bottom:25px; }
+    .eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:1.5px; font-size:11px; font-weight:800; }
+    h2 { margin:8px 0; font-size:clamp(25px,4vw,34px); }
+    .welcome p { color:var(--muted); margin:0; line-height:1.6; }
+    .date-chip { white-space:nowrap; padding:9px 13px; background:var(--accent-soft); color:var(--accent); border-radius:999px; font-size:12px; font-weight:700; }
+    .stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin:25px 0; }
+    .stat, .panel { background:var(--card); border:1px solid var(--border); border-radius:17px; box-shadow:var(--shadow); }
+    .stat { padding:20px; }
+    .stat-top { display:flex; justify-content:space-between; color:var(--muted); font-size:13px; }
+    .stat-icon { width:35px; height:35px; display:grid; place-items:center; border-radius:11px; background:var(--accent-soft); font-size:17px; }
+    .stat-value { font-size:29px; font-weight:800; margin-top:14px; }
+    .stat-note { color:var(--muted); font-size:12px; margin-top:4px; }
+    .content-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:18px; align-items:start; }
+    .panel { padding:22px; }
+    .panel-heading { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:17px; }
+    h3 { margin:0; font-size:18px; }
+    .panel-desc { color:var(--muted); font-size:13px; margin:6px 0 0; }
+    .task-form { display:flex; gap:9px; margin-bottom:17px; }
+    input[type="text"] { min-width:0; flex:1; padding:12px 13px; border:1px solid var(--border); border-radius:10px; background:var(--bg); color:var(--text); outline:none; }
+    input:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
+    .add-btn { border:0; color:white; background:var(--accent); padding:0 17px; border-radius:10px; font-weight:700; }
+    .task-list { list-style:none; padding:0; margin:0; }
+    .task-item { display:flex; justify-content:space-between; align-items:center; gap:10px; padding:13px 2px; border-bottom:1px solid var(--border); }
+    .task-item:last-child { border-bottom:0; }
+    .task-label { display:flex; align-items:center; gap:10px; min-width:0; font-size:14px; }
+    .task-label span { overflow-wrap:anywhere; }
+    .task-item.completed .task-label span { text-decoration:line-through; color:var(--muted); }
+    input[type="checkbox"] { accent-color:var(--accent); width:16px; height:16px; }
+    .delete-btn { border:0; background:transparent; color:#ef4444; font-size:19px; padding:3px 7px; }
+    .empty { color:var(--muted); text-align:center; padding:24px 5px; font-size:14px; }
+    .project-card { padding:15px; background:var(--bg); border:1px solid var(--border); border-radius:13px; margin-top:12px; }
+    .project-title { display:flex; justify-content:space-between; gap:10px; font-weight:700; font-size:14px; }
+    .tag { color:var(--accent); background:var(--accent-soft); border-radius:999px; padding:4px 8px; font-size:10px; white-space:nowrap; }
+    .project-card p { color:var(--muted); font-size:12px; line-height:1.5; margin:8px 0 0; }
+    .progress-track { height:7px; border-radius:99px; background:var(--border); margin-top:12px; overflow:hidden; }
+    .progress-fill { height:100%; width:68%; background:linear-gradient(90deg,#4f46e5,#06b6d4); border-radius:99px; }
+    footer { text-align:center; color:var(--muted); font-size:12px; padding:22px; }
+    @media(max-width:760px) { header { align-items:flex-start; } .header-right span { display:none; } .welcome { align-items:flex-start; flex-direction:column; } .stats { grid-template-columns:1fr; } .content-grid { grid-template-columns:1fr; } }
+    @media(max-width:430px) { header { padding:14px; } h1 { font-size:16px; } .theme-btn { padding:8px; font-size:12px; } main { padding:25px 14px 40px; } .panel { padding:17px; } .task-form { flex-direction:column; } .add-btn { padding:12px; } }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+    // Reusable header component: receives values through props.
+    function Header({ theme, toggleTheme }) {
+      return (
+        <header>
+          <div className="brand">
+            <div className="logo">⚗</div>
+            <div><h1>Science Fair Hub</h1><div className="subbrand">Explore • Experiment • Discover</div></div>
+          </div>
+          <div className="header-right">
+            <span>Student Project Dashboard</span>
+            <button className="theme-btn" onClick={toggleTheme}>
+              {theme === "light" ? "🌙 Dark Mode" : "☀️ Light Mode"}
+            </button>
+          </div>
+        </header>
+      );
+    }
+
+    // Reusable statistic card component.
+    function StatCard({ icon, title, value, note }) {
+      return <div className="stat">
+        <div className="stat-top"><span>{title}</span><span className="stat-icon">{icon}</span></div>
+        <div className="stat-value">{value}</div><div className="stat-note">{note}</div>
+      </div>;
+    }
+
+    // Task list component receives tasks and event handlers through props.
+    function TaskList({ tasks, onToggle, onDelete }) {
+      return <ul className="task-list">
+        {tasks.length === 0 ? <li className="empty">No milestones yet. Add your first task above!</li> :
+          tasks.map(task => <li className={`task-item ${task.completed ? "completed" : ""}`} key={task.id}>
+            <label className="task-label">
+              <input type="checkbox" checked={task.completed} onChange={() => onToggle(task.id)} />
+              <span>{task.title}</span>
+            </label>
+            <button className="delete-btn" aria-label="Delete task" onClick={() => onDelete(task.id)}>×</button>
+          </li>)}
+      </ul>;
+    }
+
+    function App() {
+      const [theme, setTheme] = useState("light");
+      const [taskInput, setTaskInput] = useState("");
+      const [tasks, setTasks] = useState([
+        { id: 1, title: "Choose a science fair topic", completed: true },
+        { id: 2, title: "Prepare the experiment materials", completed: false },
+        { id: 3, title: "Record observations and results", completed: false },
+        { id: 4, title: "Create the project presentation", completed: false }
+      ]);
+
+      const toggleTheme = () => setTheme(current => current === "light" ? "dark" : "light");
+      const addTask = (event) => {
+        event.preventDefault();
+        if (!taskInput.trim()) return;
+        setTasks(current => [...current, { id: Date.now(), title: taskInput.trim(), completed: false }]);
+        setTaskInput("");
+      };
+      const toggleTask = (id) => setTasks(current => current.map(task =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      ));
+      const deleteTask = (id) => setTasks(current => current.filter(task => task.id !== id));
+      const completedCount = tasks.filter(task => task.completed).length;
+
+      return <div className={`app ${theme}`}>
+        <Header theme={theme} toggleTheme={toggleTheme} />
+        <main>
+          <section className="welcome">
+            <div>
+              <div className="eyebrow">Welcome to your workspace</div>
+              <h2>Let’s make science exciting! <span>🔬</span></h2>
+              <p>Plan your ideas, track your experiments, and get ready to present your discoveries.</p>
+            </div>
+            <div className="date-chip">✨ Science Fair Project</div>
+          </section>
+
+          <section className="stats">
+            <StatCard icon="🧪" title="Project Ideas" value="12" note="Ideas ready to explore" />
+            <StatCard icon="👩‍🔬" title="Participants" value="08" note="Young innovators" />
+            <StatCard icon="✅" title="Tasks Completed" value={`${completedCount}/${tasks.length}`} note="Your project progress" />
+          </section>
+
+          <section className="content-grid">
+            <div className="panel">
+              <div className="panel-heading">
+                <div><h3>Project Milestones</h3><p className="panel-desc">Add tasks and track your science fair preparation.</p></div>
+              </div>
+              <form className="task-form" onSubmit={addTask}>
+                <input type="text" placeholder="Enter a new milestone..." value={taskInput}
+                  onChange={event => setTaskInput(event.target.value)} />
+                <button className="add-btn" type="submit">+ Add Task</button>
+              </form>
+              <TaskList tasks={tasks} onToggle={toggleTask} onDelete={deleteTask} />
+            </div>
+
+            <aside className="panel">
+              <h3>Featured Project</h3>
+              <p className="panel-desc">A sample project from the science fair gallery.</p>
+              <div className="project-card">
+                <div className="project-title"><span>🌱 Smart Plant Monitor</span><span className="tag">Featured</span></div>
+                <p>A simple system that observes soil moisture and helps identify when a plant needs water.</p>
+                <div className="progress-track"><div className="progress-fill"></div></div>
+                <p>Project preparation: 68%</p>
+              </div>
+              <div className="project-card">
+                <div className="project-title"><span>💡 Renewable Energy Model</span><span className="tag">Explore</span></div>
+                <p>Discover how solar energy can be converted into useful electrical power.</p>
+              </div>
+            </aside>
+          </section>
+        </main>
+        <footer>Science Fair Hub · Learn by experimenting and discovering.</footer>
+      </div>;
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
